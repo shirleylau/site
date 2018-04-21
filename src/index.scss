@@ -1,0 +1,373 @@
+// Mixins
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+@mixin transition($str) {
+  -webkit-transition: #{$str};
+  -moz-transition: #{$str};
+  -ms-transition: #{$str};
+  -o-transition: #{$str};
+  transition: #{$str};
+}
+
+// Vars
+$barlow-font: 'Barlow Condensed', sans-serif;
+$roboto-font: 'Roboto', sans-serif;
+$light-grey: #f2f3f5;
+$med-grey: #bdbfc1;
+$dark-grey: #616166;
+$vibrant-green: #287f59;
+$light-green: #d9e1dd;
+$med-green: #22694a;
+$dark-green: #125436;
+
+body {
+  color: $dark-grey;
+  margin: 0;
+  font-family: $roboto-font;
+
+}
+
+a {
+  color: $vibrant-green;
+  text-decoration: none;
+  cursor: pointer;
+  @include transition(color 0.45s ease-in-out);
+  svg {
+    @include transition(fill 0.45s ease-in-out);
+  }
+  .animated-caret {
+    margin-left: 0.25em;
+    font-weight: bold;
+    @include transition(margin-left 0.45s ease-in-out);
+    &::after {
+      content: '\2794';
+    }
+  }
+  &:hover {
+    color: $med-grey;
+    .animated-caret {
+      margin-left: 1em;
+      color: $vibrant-green;
+    }
+  }
+}
+
+h1, h2, h3 {
+  font-family: $barlow-font;
+  letter-spacing: 0.01em;
+}
+
+
+h3 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+.bold-emph {
+  font-weight: 500;
+}
+
+
+@include keyframes(navHide) {
+  from { top: 0px; }
+  to { top: -4em; }
+}
+
+@include keyframes(navShow) {
+  from { top: -4em; }
+  to { top: 0px; }
+}
+
+@include keyframes(blink) {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+#nav-bar {
+  width: 100%;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: space-between;
+  background-color: $light-grey;
+  letter-spacing: 0.03em;
+  z-index: 1;
+  &.nav-show {
+    @include animation(navShow 0.25s ease-in);
+  }
+  &.nav-hide {
+    @include animation(navHide 0.25s ease-in);
+    top: -4em;
+  }
+  > div {
+    display: inline-block;
+    &:first-child {
+      padding-left: 3em;
+    }
+    &:last-child {
+      padding-right: 3em;
+    }
+  }
+  h1, h2, h3 {
+    margin: 0;
+    &:not(.bold-emph) {
+      font-weight: 400;
+    }
+  }
+
+  .nav-option {
+    display: inline-block;
+    a {
+      font-weight: bold;
+      padding: 0 1.25em;
+      display: inline-block;
+      color: $dark-grey;
+      &.active {
+        color: $vibrant-green;
+      }
+      &:hover {
+        color: $med-grey;
+      }
+    }
+    &:last-child a {
+      padding-right: 0;
+    }
+  }
+}
+
+.content {
+  h1 {
+    font-size: 48px;
+    font-weight: 500;
+  }
+
+  h1, h2, h3 {
+    margin-top: 0;
+  }
+  .section-container {
+    padding: 4.5em 3em;
+    max-width: 1200px;
+    .subsection {
+      margin-bottom: 3em;
+    }
+    .grid-row {
+      display: flex;
+      margin-bottom: 1em;
+      > div {
+        &:first-child {
+          flex: 1;
+          text-align: right;
+          margin-right: 2em;
+          // background-color: pink;
+        }
+        &:last-child {
+          flex: 3;
+          // background-color: yellow;
+        }
+        > div {
+          margin-bottom: 0.25em;
+        }
+      }
+    }
+    .column-wrapper {
+      display: flex;
+      .column {
+        flex: 1;
+      }
+      .column-header {
+        margin-bottom: 1em;
+        font-weight: 500;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 0.25em;
+        list-style: none;
+      }
+    }
+    .tagline {
+      font-style: italic;
+      color: $med-grey;
+    }
+  }
+}
+
+#intro-section {
+  display: flex;
+  font-family: $barlow-font;
+  background-color: $light-grey;
+  border-bottom: 1px solid $med-grey;
+  flex-direction: column;
+  .section-container {
+    box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    justify-items: center;
+  }
+
+  .intro-button {
+    text-align: center;
+    @include transition(all 0.75s ease-in-out);
+    & svg {
+      fill: $med-green;
+    }
+    &:hover {
+      background-color: $med-grey;
+      & svg {
+        fill: $dark-grey;
+        // @include transition(fill 0.65s ease-in-out);
+      }
+    }
+  }
+  // .button {
+  //   position: absolute;
+  //   bottom: 0;
+  //   // height: 60px;
+  //   // width: 75px;
+  //   background-color: lavender;
+  //   @include transition(background-color 0.45s ease-in-out);
+  //   &:hover {
+  //     background-color: blue;
+  //   }
+  //   &::after {
+  //     content: '\2335';
+  //   }
+  // }
+  #intro-typewriter {
+    font-size: 72px;
+    font-weight: 500;
+    align-self: center;
+  }
+}
+#about-section {
+  background-color: $light-grey;
+}
+
+
+#work-section {
+  background-color: #FFF;
+}
+
+#contact-section {
+  border-bottom: 2em solid $dark-green;
+  .section-container {
+    padding-bottom: 0;
+    .grid-row {
+      margin-bottom: 0;
+    }
+  }
+
+  .contact-type {
+    color: $med-grey;
+    font-weight: 400;
+  }
+  .contact-icons {
+    display: flex;
+    > div {
+      flex: 1;
+    }
+  }
+  .contact-button-section {
+      background-color: $med-green;
+  }
+  svg {
+    fill: $dark-green;
+    &:hover {
+      fill: $light-grey;
+    }
+  }
+}
+
+
+.typewriter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  > div {
+    display: inline-block;
+    &.trailing-space {
+      margin-right: 0.25em;
+    }
+    &.caret {
+      height: 1.25em;
+      margin-left: 0.1em;
+      border-right: 0.05em solid $med-grey;
+    }
+    &.blinking {
+      animation: blink 450ms linear infinite alternate;
+    }
+  }
+}
+
+#carousel {
+  // display: flex;
+  height: 250px;
+  overflow: hidden;
+  .carousel-wrapper {
+    display: flex;
+    height: 250px;
+    padding-bottom: 2em;
+    overflow-x: scroll;
+    flex-direction: row;
+  }
+  .carousel-item {
+    margin-right: 1em;
+    & > img {
+      height: 100%;
+    }
+    &.carousel-recommendation {
+      display: flex;
+      flex-direction: column;
+      & > div {
+        &:first-child {
+          display: flex;
+          background-color: lavender;
+          flex: 1;
+          justify-content: center;
+        }
+        &:nth-child(2) {
+          background-color: green;
+          flex: 5;
+          overflow: hidden;
+        }
+
+        & > img {
+        }
+      }
+    }
+  }
+}
