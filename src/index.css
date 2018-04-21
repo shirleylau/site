@@ -271,6 +271,8 @@ p {
   #contact-section .contact-type {
     color: #bdbfc1;
     font-weight: 400; }
+    #contact-section .contact-type .visible {
+      opacity: 100; }
   #contact-section .contact-icons {
     display: flex; }
     #contact-section .contact-icons > div {

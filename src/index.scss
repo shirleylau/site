@@ -290,10 +290,13 @@ p {
       margin-bottom: 0;
     }
   }
-
   .contact-type {
     color: $med-grey;
     font-weight: 400;
+    //opacity: 0;
+    .visible {
+      opacity: 100;
+    }
   }
   .contact-icons {
     display: flex;
