@@ -35,7 +35,8 @@ class Work extends Component {
           category: 'design',
           items: ['Illustrator', 'Photoshop', 'InDesign', 'Axure']
         }
-    ]
+    ];
+    const resumeLink = "https://www.dropbox.com/s/hklyyy36lvz4vdf/shirley_lau_resume-0617.pdf?dl=0";
     return(
       <div id={this.props.name}>
         <div className="section-container">
@@ -71,7 +72,7 @@ class Work extends Component {
             <div className="grid-row">
               <div></div>
               <div>
-                <a>check out my resume <span className="animated-caret"></span></a>
+                <a href={resumeLink} target="_blank">check out my resume <span className="animated-caret"></span></a>
               </div>
 
             </div>

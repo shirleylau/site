@@ -8,7 +8,6 @@ class Home extends Component {
     const delay = 2000;
 
     const size = 65;
-    const color = 'green';
     return(
       <div id={this.props.name}>
         <div className="section-container">
@@ -16,7 +15,7 @@ class Home extends Component {
         </div>
         <Link activeClass="active" to="about-section" spy={true} smooth={true} duration={500}>
           <div className="intro-button">
-            <Icon name="linkedin" size={size} />
+            <span>&#xfe40;</span>
           </div>
         </Link>
       </div>

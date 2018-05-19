@@ -4,21 +4,26 @@ import { Icon } from './Main';
 class Contact extends Component {
   constructor() {
     super();
-    this.state = this.nullState();
+    this.state = {
+      hovering: false,
+      hoverMessage: ''
+    };
     this.activeHover = this.activeHover.bind(this);
     this.inactiveHover = this.inactiveHover.bind(this);
   }
-  nullState() {
-    return { hoverMessage: '' };
-  }
   activeHover(message) {
-    this.setState({hoverMessage: message});
-    console.log('ACTIVE hovering!');
+    this.setState({
+      hovering: true,
+      hoverMessage: message
+    });
   }
   inactiveHover(e) {
-    //e.preventDefault();
-    console.log('DONE hovering.');
-    this.setState(this.nullState());
+    this.setState({ hovering: false });
+    setTimeout(() => {
+      if (!this.state.hovering) {
+        this.setState({ hoverMessage: '' });
+      }
+    }, 500);
   }
   render() {
     const icons = [
@@ -44,26 +49,28 @@ class Contact extends Component {
       }
     ];
     const size = 65;
-    let { hoverMessage } = this.state;
+    let { hovering, hoverMessage } = this.state;
     return (
-      <div id={this.props.name}>
+      <div id={this.props.name} className={hovering ? "active-hover" : ""}>
         <div className="section-container">
           <div className="grid-row">
             <div></div>
             <div>
-              <h1>contact <span className="contact-type"></span></h1>
+              <h1>contact <span className="contact-message">{hoverMessage}</span></h1>
             </div>
           </div>
         </div>
-        <div className="section-container contact-button-section">
-          <div className="grid-row">
-            <div></div>
-            <div className="contact-icons">
-              {
-                icons.map((icon, i) => {
-                  return <ContactIcon name={icon.name} url={icon.url} size={size} hoverMessage={icon.hoverMessage} onMouseEnter={this.activeHover} onMouseLeave={this.inactiveHover} key={i} />
-                })
-              }
+        <div className="contact-button-section">
+          <div className="section-container">
+            <div className="grid-row">
+              <div></div>
+              <div className="contact-icons">
+                {
+                  icons.map((icon, i) => {
+                    return <ContactIcon name={icon.name} url={icon.url} size={size} hoverMessage={icon.hoverMessage} mouseEnter={this.activeHover} mouseLeave={this.inactiveHover} key={i} />
+                  })
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -75,15 +82,29 @@ class Contact extends Component {
 class ContactIcon extends Component {
   constructor() {
     super();
-    this.state = {
-      active: false
-    }
+    this.nullState = this.nullState.bind(this);
+    this.setActive = this.setActive.bind(this);
+    this.setInactive = this.setInactive.bind(this);
+    this.state = this.nullState();
+  }
+  nullState() {
+    return {active: false};
+  }
+  setActive() {
+    const { hoverMessage, mouseEnter } = this.props;
+    this.setState({active: true});
+    mouseEnter(hoverMessage);
+  }
+  setInactive() {
+    const { mouseLeave } = this.props;
+    this.setState(this.nullState());
+    mouseLeave();
   }
   render() {
-    //<div onMouseEnter={onMouseEnter(hoverMessage)} onMouseLeave={onMouseLeave}>
-    const { name, url, size, hoverMessage, onMouseEnter, onMouseLeave } = this.props;
+    const { active } = this.state;
+    const { name, url, size } = this.props;
     return (
-      <div onMouseLeave={onMouseLeave}>
+      <div className={"contact-icon" + (active ? " active" : "")} onMouseEnter={this.setActive} onMouseLeave={this.setInactive}>
         <a href={url} target="_blank">
           <Icon name={name} size={size} />
         </a>

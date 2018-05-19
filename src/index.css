@@ -13,11 +13,11 @@ a {
   -o-transition: color 0.45s ease-in-out;
   transition: color 0.45s ease-in-out; }
   a svg {
-    -webkit-transition: fill 0.45s ease-in-out;
-    -moz-transition: fill 0.45s ease-in-out;
-    -ms-transition: fill 0.45s ease-in-out;
-    -o-transition: fill 0.45s ease-in-out;
-    transition: fill 0.45s ease-in-out; }
+    -webkit-transition: all 0.45s ease-in-out;
+    -moz-transition: all 0.45s ease-in-out;
+    -ms-transition: all 0.45s ease-in-out;
+    -o-transition: all 0.45s ease-in-out;
+    transition: all 0.45s ease-in-out; }
   a .animated-caret {
     margin-left: 0.25em;
     font-weight: bold;
@@ -240,17 +240,25 @@ p {
     justify-items: center; }
   #intro-section .intro-button {
     text-align: center;
+    font-size: 72px;
     -webkit-transition: all 0.75s ease-in-out;
     -moz-transition: all 0.75s ease-in-out;
     -ms-transition: all 0.75s ease-in-out;
     -o-transition: all 0.75s ease-in-out;
     transition: all 0.75s ease-in-out; }
-    #intro-section .intro-button svg {
-      fill: #22694a; }
+    #intro-section .intro-button span {
+      color: #22694a;
+      position: relative;
+      top: 0.5ex;
+      -webkit-transition: fill 0.45s ease-in-out;
+      -moz-transition: fill 0.45s ease-in-out;
+      -ms-transition: fill 0.45s ease-in-out;
+      -o-transition: fill 0.45s ease-in-out;
+      transition: fill 0.45s ease-in-out; }
     #intro-section .intro-button:hover {
       background-color: #bdbfc1; }
-      #intro-section .intro-button:hover svg {
-        fill: #616166; }
+      #intro-section .intro-button:hover span {
+        color: #616166; }
   #intro-section #intro-typewriter {
     font-size: 72px;
     font-weight: 500;
@@ -258,21 +266,32 @@ p {
 
 #about-section {
   background-color: #f2f3f5; }
+  #about-section p {
+    white-space: pre-line; }
 
 #work-section {
   background-color: #FFF; }
 
 #contact-section {
-  border-bottom: 2em solid #125436; }
+  border-bottom: 2em solid #125436;
+  -webkit-transition: all 0.45s ease-in-out;
+  -moz-transition: all 0.45s ease-in-out;
+  -ms-transition: all 0.45s ease-in-out;
+  -o-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out; }
   #contact-section .section-container {
     padding-bottom: 0; }
     #contact-section .section-container .grid-row {
       margin-bottom: 0; }
-  #contact-section .contact-type {
+  #contact-section .contact-message {
     color: #bdbfc1;
-    font-weight: 400; }
-    #contact-section .contact-type .visible {
-      opacity: 100; }
+    font-weight: 400;
+    opacity: 0;
+    -webkit-transition: all 0.45s ease-in-out;
+    -moz-transition: all 0.45s ease-in-out;
+    -ms-transition: all 0.45s ease-in-out;
+    -o-transition: all 0.45s ease-in-out;
+    transition: all 0.45s ease-in-out; }
   #contact-section .contact-icons {
     display: flex; }
     #contact-section .contact-icons > div {
@@ -282,7 +301,13 @@ p {
   #contact-section svg {
     fill: #125436; }
     #contact-section svg:hover {
-      fill: #f2f3f5; }
+      fill: #0d4f31; }
+  #contact-section.active-hover {
+    border-bottom: 2em solid #0d4f31; }
+    #contact-section.active-hover .contact-message {
+      opacity: 1; }
+    #contact-section.active-hover .contact-icon:not(.active) svg {
+      opacity: 0.65; }
 
 .typewriter {
   display: flex;
@@ -298,29 +323,3 @@ p {
       border-right: 0.05em solid #bdbfc1; }
     .typewriter > div.blinking {
       animation: blink 450ms linear infinite alternate; }
-
-#carousel {
-  height: 250px;
-  overflow: hidden; }
-  #carousel .carousel-wrapper {
-    display: flex;
-    height: 250px;
-    padding-bottom: 2em;
-    overflow-x: scroll;
-    flex-direction: row; }
-  #carousel .carousel-item {
-    margin-right: 1em; }
-    #carousel .carousel-item > img {
-      height: 100%; }
-    #carousel .carousel-item.carousel-recommendation {
-      display: flex;
-      flex-direction: column; }
-      #carousel .carousel-item.carousel-recommendation > div:first-child {
-        display: flex;
-        background-color: lavender;
-        flex: 1;
-        justify-content: center; }
-      #carousel .carousel-item.carousel-recommendation > div:nth-child(2) {
-        background-color: green;
-        flex: 5;
-        overflow: hidden; }

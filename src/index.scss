@@ -43,6 +43,7 @@ $vibrant-green: #287f59;
 $light-green: #d9e1dd;
 $med-green: #22694a;
 $dark-green: #125436;
+$dark-green2: #0d4f31;
 
 body {
   color: $dark-grey;
@@ -57,7 +58,7 @@ a {
   cursor: pointer;
   @include transition(color 0.45s ease-in-out);
   svg {
-    @include transition(fill 0.45s ease-in-out);
+    @include transition(all 0.45s ease-in-out);
   }
   .animated-caret {
     margin-left: 0.25em;
@@ -241,16 +242,26 @@ p {
 
   .intro-button {
     text-align: center;
+    font-size: 72px;
     @include transition(all 0.75s ease-in-out);
-    & svg {
-      fill: $med-green;
+    span {
+      color: $med-green;
+      position: relative;
+      top: 0.5ex;
+      @include transition(fill 0.45s ease-in-out);
     }
+    // & svg {
+    //   fill: $med-green;
+    // }
     &:hover {
       background-color: $med-grey;
-      & svg {
-        fill: $dark-grey;
-        // @include transition(fill 0.65s ease-in-out);
+      span {
+        color: $dark-grey;
       }
+      // & svg {
+      //   fill: $dark-grey;
+      //   // @include transition(fill 0.65s ease-in-out);
+      // }
     }
   }
   // .button {
@@ -275,6 +286,9 @@ p {
 }
 #about-section {
   background-color: $light-grey;
+  p {
+    white-space: pre-line;
+  }
 }
 
 
@@ -284,19 +298,18 @@ p {
 
 #contact-section {
   border-bottom: 2em solid $dark-green;
+  @include transition(all 0.45s ease-in-out);
   .section-container {
     padding-bottom: 0;
     .grid-row {
       margin-bottom: 0;
     }
   }
-  .contact-type {
+  .contact-message {
     color: $med-grey;
     font-weight: 400;
-    //opacity: 0;
-    .visible {
-      opacity: 100;
-    }
+    opacity: 0;
+    @include transition(all 0.45s ease-in-out);
   }
   .contact-icons {
     display: flex;
@@ -310,12 +323,19 @@ p {
   svg {
     fill: $dark-green;
     &:hover {
-      fill: $light-grey;
+      fill: $dark-green2;
+    }
+  }
+  &.active-hover {
+    border-bottom: 2em solid $dark-green2;
+    .contact-message {
+      opacity: 1;
+    }
+    .contact-icon:not(.active) svg {
+      opacity: 0.65;
     }
   }
 }
-
-
 .typewriter {
   display: flex;
   flex-wrap: wrap;
@@ -336,41 +356,41 @@ p {
   }
 }
 
-#carousel {
-  // display: flex;
-  height: 250px;
-  overflow: hidden;
-  .carousel-wrapper {
-    display: flex;
-    height: 250px;
-    padding-bottom: 2em;
-    overflow-x: scroll;
-    flex-direction: row;
-  }
-  .carousel-item {
-    margin-right: 1em;
-    & > img {
-      height: 100%;
-    }
-    &.carousel-recommendation {
-      display: flex;
-      flex-direction: column;
-      & > div {
-        &:first-child {
-          display: flex;
-          background-color: lavender;
-          flex: 1;
-          justify-content: center;
-        }
-        &:nth-child(2) {
-          background-color: green;
-          flex: 5;
-          overflow: hidden;
-        }
-
-        & > img {
-        }
-      }
-    }
-  }
-}
+// #carousel {
+//   // display: flex;
+//   height: 250px;
+//   overflow: hidden;
+//   .carousel-wrapper {
+//     display: flex;
+//     height: 250px;
+//     padding-bottom: 2em;
+//     overflow-x: scroll;
+//     flex-direction: row;
+//   }
+//   .carousel-item {
+//     margin-right: 1em;
+//     & > img {
+//       height: 100%;
+//     }
+//     &.carousel-recommendation {
+//       display: flex;
+//       flex-direction: column;
+//       & > div {
+//         &:first-child {
+//           display: flex;
+//           background-color: lavender;
+//           flex: 1;
+//           justify-content: center;
+//         }
+//         &:nth-child(2) {
+//           background-color: green;
+//           flex: 5;
+//           overflow: hidden;
+//         }
+//
+//         & > img {
+//         }
+//       }
+//     }
+//   }
+// }
