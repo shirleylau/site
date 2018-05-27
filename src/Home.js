@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-scroll';
-import { Icon } from './Main';
 
 class Home extends Component {
   render() {
     const message = 'Hi there. Nice to meet you.'.toUpperCase();
     const delay = 2000;
-
-    const size = 65;
     return(
       <div id={this.props.name}>
         <div className="section-container">
