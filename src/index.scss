@@ -49,7 +49,7 @@ body {
   color: $dark-grey;
   margin: 0;
   font-family: $roboto-font;
-
+  background-color: $light-grey;
 }
 
 a {
@@ -230,7 +230,7 @@ p {
 #intro-section {
   display: flex;
   font-family: $barlow-font;
-  background-color: $light-grey;
+  // background-color: $light-grey;
   border-bottom: 1px solid $med-grey;
   flex-direction: column;
   .section-container {
@@ -285,7 +285,7 @@ p {
   }
 }
 #about-section {
-  background-color: $light-grey;
+  // background-color: $light-grey;
   p {
     white-space: pre-line;
   }
@@ -297,6 +297,7 @@ p {
 }
 
 #contact-section {
+  background-color: #FFF;
   border-bottom: 2em solid $dark-green;
   @include transition(all 0.45s ease-in-out);
   .section-container {
