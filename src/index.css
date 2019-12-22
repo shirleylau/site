@@ -51,6 +51,9 @@ p {
 .bold-emph {
   font-weight: 500; }
 
+.med-grey {
+  color: #bdbfc1; }
+
 @-webkit-keyframes navHide {
   from {
     top: 0px; }
@@ -111,6 +114,66 @@ p {
   to {
     top: 0px; } }
 
+@-webkit-keyframes mobileHide {
+  from {
+    top: 0px; }
+  to {
+    top: -5em; } }
+
+@-moz-keyframes mobileHide {
+  from {
+    top: 0px; }
+  to {
+    top: -5em; } }
+
+@-ms-keyframes mobileHide {
+  from {
+    top: 0px; }
+  to {
+    top: -5em; } }
+
+@-o-keyframes mobileHide {
+  from {
+    top: 0px; }
+  to {
+    top: -5em; } }
+
+@keyframes mobileHide {
+  from {
+    top: 0px; }
+  to {
+    top: -5em; } }
+
+@-webkit-keyframes mobileShow {
+  from {
+    top: -5em; }
+  to {
+    top: 0px; } }
+
+@-moz-keyframes mobileShow {
+  from {
+    top: -5em; }
+  to {
+    top: 0px; } }
+
+@-ms-keyframes mobileShow {
+  from {
+    top: -5em; }
+  to {
+    top: 0px; } }
+
+@-o-keyframes mobileShow {
+  from {
+    top: -5em; }
+  to {
+    top: 0px; } }
+
+@keyframes mobileShow {
+  from {
+    top: -5em; }
+  to {
+    top: 0px; } }
+
 @-webkit-keyframes blink {
   from {
     opacity: 0; }
@@ -141,7 +204,12 @@ p {
   to {
     opacity: 1; } }
 
-#nav-bar {
+#navigation h1, #navigation h2, #navigation h3 {
+  margin: 0; }
+  #navigation h1:not(.bold-emph), #navigation h2:not(.bold-emph), #navigation h3:not(.bold-emph) {
+    font-weight: 400; }
+
+#navigation #nav-bar {
   width: 100%;
   height: 4em;
   display: flex;
@@ -150,43 +218,40 @@ p {
   justify-content: space-between;
   background-color: #f2f3f5;
   letter-spacing: 0.03em;
-  z-index: 1; }
-  #nav-bar.nav-show {
+  z-index: 2; }
+  #navigation #nav-bar.nav-show {
     -webkit-animation: navShow 0.25s ease-in;
     -moz-animation: navShow 0.25s ease-in;
     -ms-animation: navShow 0.25s ease-in;
     -o-animation: navShow 0.25s ease-in;
     animation: navShow 0.25s ease-in; }
-  #nav-bar.nav-hide {
+  #navigation #nav-bar.nav-hide {
     -webkit-animation: navHide 0.25s ease-in;
     -moz-animation: navHide 0.25s ease-in;
     -ms-animation: navHide 0.25s ease-in;
     -o-animation: navHide 0.25s ease-in;
     animation: navHide 0.25s ease-in;
     top: -4em; }
-  #nav-bar > div {
+  #navigation #nav-bar > div {
     display: inline-block; }
-    #nav-bar > div:first-child {
+    #navigation #nav-bar > div:first-child {
       padding-left: 3em; }
-    #nav-bar > div:last-child {
+    #navigation #nav-bar > div:last-child {
       padding-right: 3em; }
-  #nav-bar h1, #nav-bar h2, #nav-bar h3 {
-    margin: 0; }
-    #nav-bar h1:not(.bold-emph), #nav-bar h2:not(.bold-emph), #nav-bar h3:not(.bold-emph) {
-      font-weight: 400; }
-  #nav-bar .nav-option {
-    display: inline-block; }
-    #nav-bar .nav-option a {
-      font-weight: bold;
-      padding: 0 1.25em;
-      display: inline-block;
-      color: #616166; }
-      #nav-bar .nav-option a.active {
-        color: #287f59; }
-      #nav-bar .nav-option a:hover {
-        color: #bdbfc1; }
-    #nav-bar .nav-option:last-child a {
-      padding-right: 0; }
+
+#navigation .nav-option {
+  display: inline-block; }
+  #navigation .nav-option a {
+    font-weight: bold;
+    padding: 0 1.25em;
+    display: inline-block;
+    color: #616166; }
+    #navigation .nav-option a.active {
+      color: #287f59; }
+    #navigation .nav-option a:hover {
+      color: #bdbfc1; }
+  #navigation .nav-option:last-child a {
+    padding-right: 0; }
 
 .content h1 {
   font-size: 48px;
@@ -200,33 +265,39 @@ p {
   max-width: 1200px; }
   .content .section-container .subsection {
     margin-bottom: 3em; }
-  .content .section-container .grid-row {
-    display: flex;
-    margin-bottom: 1em; }
-    .content .section-container .grid-row > div:first-child {
-      flex: 1;
-      text-align: right;
-      margin-right: 2em; }
-    .content .section-container .grid-row > div:last-child {
-      flex: 3; }
-    .content .section-container .grid-row > div > div {
-      margin-bottom: 0.25em; }
-  .content .section-container .column-wrapper {
-    display: flex; }
-    .content .section-container .column-wrapper .column {
-      flex: 1; }
-    .content .section-container .column-wrapper .column-header {
-      margin-bottom: 1em;
-      font-weight: 500; }
-    .content .section-container .column-wrapper ul {
-      margin: 0;
-      padding: 0; }
-    .content .section-container .column-wrapper li {
-      margin-bottom: 0.25em;
-      list-style: none; }
-  .content .section-container .tagline {
-    font-style: italic;
-    color: #bdbfc1; }
+
+.grid-row {
+  display: flex;
+  margin-bottom: 1em; }
+  .grid-row > div:first-child {
+    flex: 1;
+    text-align: right;
+    margin-right: 2em; }
+  .grid-row > div:last-child {
+    flex: 3; }
+  .grid-row > div > div {
+    margin-bottom: 0.25em; }
+
+.column-wrapper {
+  display: flex;
+  flex-wrap: wrap; }
+  .column-wrapper .column {
+    flex: 1 1 20%;
+    margin-right: 1em;
+    white-space: nowrap; }
+  .column-wrapper .column-header {
+    margin-bottom: 1em;
+    font-weight: 500; }
+  .column-wrapper ul {
+    margin: 0;
+    padding: 0; }
+  .column-wrapper li {
+    margin-bottom: 0.25em;
+    list-style: none; }
+
+.tagline {
+  font-style: italic;
+  color: #bdbfc1; }
 
 #intro-section {
   display: flex;
@@ -322,3 +393,38 @@ p {
       border-right: 0.05em solid #bdbfc1; }
     .typewriter > div.blinking {
       animation: blink 450ms linear infinite alternate; }
+
+@media (max-width: 600px) {
+  #nav-options {
+    top: 4em;
+    height: 8em;
+    width: 100%;
+    background: #f2f3f5;
+    padding-left: 3em;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1; }
+    #nav-options.nav-options-show {
+      -webkit-animation: mobileShow 0.3s ease-in;
+      -moz-animation: mobileShow 0.3s ease-in;
+      -ms-animation: mobileShow 0.3s ease-in;
+      -o-animation: mobileShow 0.3s ease-in;
+      animation: mobileShow 0.3s ease-in; }
+    #nav-options.nav-options-hide {
+      -webkit-animation: mobileHide 0.3s ease-in;
+      -moz-animation: mobileHide 0.3s ease-in;
+      -ms-animation: mobileHide 0.3s ease-in;
+      -o-animation: mobileHide 0.3s ease-in;
+      animation: mobileHide 0.3s ease-in;
+      top: -5em; }
+    #nav-options .nav-option a {
+      padding: 0; }
+  .grid-row {
+    margin-bottom: 1.5em;
+    flex-direction: column; }
+    .grid-row > div:first-child {
+      text-align: left; }
+  .tagline {
+    text-align: left;
+    margin-bottom: .5em; } }
