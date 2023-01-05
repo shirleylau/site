@@ -5,7 +5,7 @@
   "homepage": "http://shirleylau.github.io/site",
   "devDependencies": {
     "gh-pages": "^2.0.1",
-    "react-scripts": "1.0.17"
+    "react-scripts": "5.0.1"
   },
   "dependencies": {
     "node-sass-chokidar": "0.0.3",
